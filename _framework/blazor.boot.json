@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "ContourApp",
   "resources": {
-    "hash": "sha256-QNh1gc4HQUle1Nn3ojuMH39yvblkIIgguLT/s+7y7Kc=",
+    "hash": "sha256-FLfcSeSoNdJxf1MmCYOlHlsbbAJMzeG4IMVRmP0SA1U=",
     "jsModuleNative": {
       "dotnet.native.8.0.11.n1sf6xr5tz.js": "sha256-VdKq87/z5NIxZKmuM+fv38XF+RcEb/bg3jVBwQSfwP4="
     },
@@ -17,7 +17,7 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "ContourApp.wasm": "sha256-VGQp5fWmBMAvLRiEW46N0QPkgjP3+X3QOTLcuSrFL8c=",
+      "ContourApp.wasm": "sha256-RUUgyhR5dd91ecnUfTf/yVyKLzoVdgdIO47Qgjwg/fQ=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-gvrjE05SMHwKh+EIgTzoK5TjRmWayfv0v5js7BFoeOQ=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-SYARg2pDFH0tGC+Q+NalKlL45h/ETHY5RCB6SY+lhk0=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-9pa4TX6FPCR8IZ3hObhj8D/J0Rp+4PZ1bfCK0WQAIZ8=",
