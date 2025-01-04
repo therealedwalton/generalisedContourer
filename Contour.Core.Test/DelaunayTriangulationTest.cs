@@ -1,5 +1,4 @@
-
-using System.Drawing;
+using Contour.Core;
 
 namespace Contour.Core.Test
 {
