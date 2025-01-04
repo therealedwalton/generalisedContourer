@@ -5,6 +5,10 @@ VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContourApp", "ContourApp\ContourApp.csproj", "{91F9452B-DA17-4BD4-9A3D-C1CF5FC7D07A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contour.Core", "Contour.Core\Contour.Core.csproj", "{3205C613-4055-4D74-977E-97D9B2716828}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contour.Core.Test", "Contour.Core.Test\Contour.Core.Test.csproj", "{2C69E581-2D11-471F-9A2B-85ECED1410DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{91F9452B-DA17-4BD4-9A3D-C1CF5FC7D07A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91F9452B-DA17-4BD4-9A3D-C1CF5FC7D07A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91F9452B-DA17-4BD4-9A3D-C1CF5FC7D07A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3205C613-4055-4D74-977E-97D9B2716828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3205C613-4055-4D74-977E-97D9B2716828}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3205C613-4055-4D74-977E-97D9B2716828}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3205C613-4055-4D74-977E-97D9B2716828}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C69E581-2D11-471F-9A2B-85ECED1410DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C69E581-2D11-471F-9A2B-85ECED1410DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C69E581-2D11-471F-9A2B-85ECED1410DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C69E581-2D11-471F-9A2B-85ECED1410DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
