@@ -1,4 +1,5 @@
 ﻿
+
 namespace Contour.Core
 {
     public record Circle
@@ -10,6 +11,11 @@ namespace Contour.Core
         {
             Center = center;
             Radius = radius;
+        }
+
+        public static bool ContainsPoint(Circle circle, Point point)
+        {
+            return true;
         }
     }
 }
