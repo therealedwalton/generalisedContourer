@@ -13,9 +13,12 @@ namespace Contour.Core
             Radius = radius;
         }
 
-        public static bool ContainsPoint(Circle circle, Point point)
+        public bool ContainsPoint(Point point)
         {
-            return true;
+            double distance = Math.Sqrt(Math.Pow(point.x - Center.x, 2) +
+                                  Math.Pow(point.y - Center.y, 2));
+
+            return distance <= Radius;
         }
     }
 }

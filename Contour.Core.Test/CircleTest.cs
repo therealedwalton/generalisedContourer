@@ -8,18 +8,32 @@ namespace Contour.Core.Test
 {
     public class CircleTest
     {
-        [Fact]
-        void CanDetermineIfContainsPoint()
+        [Theory]
+        [MemberData(nameof(IsInsideData))]
+        void CanDetermineIfContainsPoint(Circle circle, Point point, bool expectedInside)
         {
-            //Arrange
-            var circle = new Circle(new Point(1.0, 1.0), 1.0);
-            var point = new Point(0.5, 0.5);
-
             //Act
-            var isInCircle = Circle.ContainsPoint(circle, point);
+            var isInCircle = circle.ContainsPoint(point);
 
             //Assert
-            Assert.True(isInCircle);
+            Assert.Equal(expectedInside, isInCircle);
         }
+
+        public static IEnumerable<object[]> IsInsideData =>
+            new List<object[]>
+            {
+                new object[]
+                {
+                    new Circle(new Point(1.0, 1.0), 1.0),
+                    new Point(0.5, 0.5),
+                    true
+                },
+                new object[]
+                {
+                    new Circle(new Point(1.0, 1.0), 1.0),
+                    new Point(0.0, 0.0),
+                    false
+                },
+            };
     }
 }
