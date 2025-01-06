@@ -8,17 +8,15 @@ namespace Contour.Core.Test
 {
     public class TriangleTest
     {
-        [Fact]
-        public void CanCalculateCircumcircle()
+        [Theory]
+        [MemberData(nameof(CircumcircleData))]
+        public void CanCalculateCircumcircle(Triangle triangle, Circle expectedCircumcircle)
         {
-            //Arrange
-            var triangle = new Triangle(new Point(0.0, 0.0), new Point(0.0, 1.0), new Point(1.0, 0.0));
-
             //Act
             var circumcircle = triangle.Circumcircle();
 
             //Assert
-            Assert.Equal(new Circle(new Point(1.0, 1.0), Math.Sqrt(2)), circumcircle);
+            Assert.Equal(expectedCircumcircle, circumcircle);
         }
 
         [Theory]
@@ -47,6 +45,26 @@ namespace Contour.Core.Test
                     new Triangle(new Point(0.0, 0.0), new Point(0.0, 1.0), new Point(1.0, 1.0)),
                     false
                 }
+            };
+
+        public static IEnumerable<object[]> CircumcircleData =>
+            new List<object[]>
+            {
+                new object[]
+                {
+                    new Triangle(new Point(0.0, 0.0), new Point(0.0, 1.0), new Point(1.0, 1.0)),
+                    new Circle(new Point(0.5, 0.5), Math.Sqrt(2*Math.Pow(0.5,2)))
+                },
+                new object[]
+                {
+                    new Triangle(new Point(0.0, 0.0), new Point(0.0, 2.0), new Point(2.0, 0.0)),
+                    new Circle(new Point(1.0, 1.0), Math.Sqrt(2))
+                },
+                new object[]
+                {
+                    new Triangle(new Point(0.0, 0.0), new Point(0.0, 0.0), new Point(0.0, 0.0)),
+                    new Circle(new Point(0.0, 0.0), 0)
+                },
             };
     }
 }
