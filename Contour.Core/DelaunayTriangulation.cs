@@ -1,5 +1,4 @@
-﻿using Contour.Core.Test;
-
+﻿
 namespace Contour.Core
 {
     public class DelaunayTriangulation

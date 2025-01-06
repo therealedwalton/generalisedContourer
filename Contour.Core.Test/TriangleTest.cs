@@ -8,6 +8,19 @@ namespace Contour.Core.Test
 {
     public class TriangleTest
     {
+        [Fact]
+        public void CanCalculateCircumcircle()
+        {
+            //Arrange
+            var triangle = new Triangle(new Point(0.0, 0.0), new Point(0.0, 1.0), new Point(1.0, 0.0));
+
+            //Act
+            var circumcircle = triangle.Circumcircle();
+
+            //Assert
+            Assert.Equal(new Circle(new Point(1.0, 1.0), Math.Sqrt(2)), circumcircle);
+        }
+
         [Theory]
         [MemberData(nameof(EquivalentTriangles))]
         public void TrianglesExhibitValueEquality(Triangle firstTriangle, Triangle secondTriangle, bool expectedToMatch)

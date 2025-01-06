@@ -1,5 +1,6 @@
 ﻿
-namespace Contour.Core.Test
+
+namespace Contour.Core
 {
     public class Triangle
     {
@@ -24,7 +25,7 @@ namespace Contour.Core.Test
                 return false;
             }
 
-            return this.GetHashCode() == item.GetHashCode();
+            return Vertices[0].Equals(item.Vertices[0]) && Vertices[1].Equals(item.Vertices[1]) && Vertices[2].Equals(item.Vertices[2]);
         }
 
         public override int GetHashCode()
@@ -40,6 +41,11 @@ namespace Contour.Core.Test
                 }
                 return hash;
             }
+        }
+
+        public Circle Circumcircle()
+        {
+            return new Circle(new Point(1.0, 1.0), Math.Sqrt(2));
         }
     }
 }
