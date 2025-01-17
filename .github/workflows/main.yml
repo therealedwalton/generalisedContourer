@@ -29,6 +29,18 @@ jobs:
         with: 
           dotnet-version: 8.0.x
           
+      - name: Install dependencies
+        run: dotnet restore
+        
+      - name: Test with dotnet
+        run: dotnet test --logger trx --results-directory "TestResults"
+        
+      - name: Upload dotnet test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: dotnet-test-results
+          path: TestResults
+            
       # publishes Blazor project to the release-folder
       - name: Publish .NET Core Project
         run: dotnet publish ContourApp/ContourApp.csproj -c Release -o release --nologo
