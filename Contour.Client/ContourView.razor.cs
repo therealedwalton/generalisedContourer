@@ -12,5 +12,17 @@ namespace Contour.Client
     {
         [Parameter]
         public List<Point> Points { get; set; } = new List<Point>();
+
+        IEnumerable<Triangle> Triangles { get; set; } = new List<Triangle>();
+
+        protected override void OnParametersSet()
+        {
+            if (Points?.Count > 0)
+            {
+                var triangulation = new DelaunayTriangulation(Points);
+
+                Triangles = triangulation.Triangulate();
+            }
+        }
     }
 }

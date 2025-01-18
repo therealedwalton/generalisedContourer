@@ -74,8 +74,8 @@ namespace Contour.Client.Test
                     Assert.Equal(triangles[i].Vertices[j].y, double.Parse(lines[i * 3 + j].GetAttribute("y1")));
 
                     var upperIndex = j + 1 > 2 ? 0 : j + 1;
-                    Assert.Equal(triangles[i].Vertices[upperIndex].x, double.Parse(lines[i * 3 + upperIndex].GetAttribute("x2")));
-                    Assert.Equal(triangles[i].Vertices[upperIndex].y, double.Parse(lines[i * 3 + upperIndex].GetAttribute("y2")));
+                    Assert.Equal(triangles[i].Vertices[upperIndex].x, double.Parse(lines[i * 3 + j].GetAttribute("x2")));
+                    Assert.Equal(triangles[i].Vertices[upperIndex].y, double.Parse(lines[i * 3 + j].GetAttribute("y2")));
                 }
             }
         }
