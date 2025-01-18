@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using Contour.Client
+@using Contour.Core
 
 <PageTitle>Home</PageTitle>
 
@@ -7,4 +8,10 @@
 
 Welcome to your new app.
 
-<ContourView></ContourView>
+<ContourView Points="@(new List<Point>()
+            {
+                new Point(5, 5),
+                new Point(20, 14),
+                new Point(78, 90),
+                new Point(45, 64)
+            })"></ContourView>
