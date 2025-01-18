@@ -2,16 +2,29 @@
 @using Contour.Client
 @using Contour.Core
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Contour Plot</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Contour Plot</h1>
 
-Welcome to your new app.
+<ContourView Points="@points"></ContourView>
 
-<ContourView Points="@(new List<Point>()
-            {
-                new Point(5, 5),
-                new Point(20, 14),
-                new Point(78, 90),
-                new Point(45, 64)
-            })"></ContourView>
+@code
+{
+    List<Point> points = new List<Point>();
+
+    protected override void OnInitialized()
+    {
+        var random = new Random();
+        var minValue = 0;
+        var maxValue = 100;
+
+        points.Clear();
+
+        for (int i = 0; i < 20; i++)
+        {
+            double x = minValue + (random.NextDouble() * (maxValue - minValue));
+            double y = minValue + (random.NextDouble() * (maxValue - minValue));
+            points.Add(new Point(x, y));
+        }
+    }
+}
