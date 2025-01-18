@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "ContourApp",
   "resources": {
-    "hash": "sha256-UEGU6njnkxf/uWnlyA1yEY6O20PaII9Ly6VutNpGICI=",
+    "hash": "sha256-+bi6lv7C81tuyCO/PHdynlm5Q8ReNy7UVog6qq8SqKQ=",
     "jsModuleNative": {
       "dotnet.native.8.0.12.5019ia6r61.js": "sha256-B6DNRvFeCUi3jbx9uKpuj+hV9cN0KG4RdZj1FgBZwj8="
     },
@@ -17,9 +17,9 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "Contour.Client.wasm": "sha256-Uht9vgZcVWw6DL8qfNIFe2J0Bkmf5FLI87GJXMmVAYQ=",
-      "Contour.Core.wasm": "sha256-+v5E8PaL2imyB3OtZuDe/hpbszl1g0jGYVtZ13Q00jQ=",
-      "ContourApp.wasm": "sha256-VlBhk+Y+97Sh1TMzFPLM4jZsfq9m10lzbdoKbR717JQ=",
+      "Contour.Client.wasm": "sha256-m9hnEP2ozNiPLnyU7AhO7iG/i/bfqi8Mk/VepCI6Rlw=",
+      "Contour.Core.wasm": "sha256-FTa/fuMh2OxfIu3eGtVbjnQoIaLFNW0oMw2hmlAyytM=",
+      "ContourApp.wasm": "sha256-GRIz1eVNPeXcP+sARfdfZ+xbCeDM1r+3H/NwiIozncM=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-2CZa75z6+o0X97El1HbeDr+0YwnU8hb77L2WqZsa9k8=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-SYARg2pDFH0tGC+Q+NalKlL45h/ETHY5RCB6SY+lhk0=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-9pa4TX6FPCR8IZ3hObhj8D/J0Rp+4PZ1bfCK0WQAIZ8=",
@@ -49,10 +49,10 @@
       "System.Net.Http.Json.wasm": "sha256-WjnybmwIzLW040kRzblUZQRhp66HsR/UJ3iNYvq8rZI=",
       "System.Net.Http.wasm": "sha256-DZCCUZtx7PgpAO+phIpS32rnn3ygbCVqGXOXKqWim7k=",
       "System.Net.Primitives.wasm": "sha256-73/NKJYKn5AZt5l+nd+RedvuMZY7bdOHWDDPmULQVew=",
-      "System.Private.CoreLib.wasm": "sha256-O00gAoVdZw6UBtI6WDoknVNqkRnnW7H3s1jXL8/P40g=",
+      "System.Private.CoreLib.wasm": "sha256-GuTk5EBrk/dl+I7nwFi8SeX1Y77Mv3z3E4sgu9MQZrw=",
       "System.Private.Uri.wasm": "sha256-ibIZQNE5PX5YSOSjHG5bqd0479rTgJXM7b3/EgVwPdM=",
       "System.Runtime.InteropServices.JavaScript.wasm": "sha256-oNp/YIQyu6e+Wlpa7ea10NeDfEvX1jqGhjekmPLqSYw=",
-      "System.Runtime.wasm": "sha256-CgJ25cY1OJZ6AVJAlyAUYRp0DClAH5dMVuKWRSksdOc=",
+      "System.Runtime.wasm": "sha256-6BAxZOBLjo9UF8/6BBsLTIycsuAEzL8npFZ6bbKNdsA=",
       "System.Text.Encodings.Web.wasm": "sha256-TbTf3YP030rwzmQ1f/y639avMFM0Co59q7+FXYzPfyQ=",
       "System.Text.Json.wasm": "sha256-bA1T1Iug3xLJdymJNcPiYypXYS4I/w9bBXZ5VUodSSA=",
       "System.Text.RegularExpressions.wasm": "sha256-JbUrkeYSg35S3jvu5HkdLQps3o2CDHulc5qG1TAtRKA="
