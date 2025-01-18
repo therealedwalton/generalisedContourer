@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContourApp", "ContourApp\ContourApp.csproj", "{91F9452B-DA17-4BD4-9A3D-C1CF5FC7D07A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContourApp", "ContourApp\ContourApp.csproj", "{91F9452B-DA17-4BD4-9A3D-C1CF5FC7D07A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contour.Core", "Contour.Core\Contour.Core.csproj", "{3205C613-4055-4D74-977E-97D9B2716828}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contour.Core", "Contour.Core\Contour.Core.csproj", "{3205C613-4055-4D74-977E-97D9B2716828}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contour.Core.Test", "Contour.Core.Test\Contour.Core.Test.csproj", "{2C69E581-2D11-471F-9A2B-85ECED1410DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contour.Core.Test", "Contour.Core.Test\Contour.Core.Test.csproj", "{2C69E581-2D11-471F-9A2B-85ECED1410DF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contour.Client", "Contour.Client\Contour.Client.csproj", "{8FE18102-E9E4-40EE-87DA-9D02FA9DB18D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contour.Client.Test", "Contour.Client.Test\Contour.Client.Test.csproj", "{3911BE02-8147-46A5-8F2C-8AD079DF6A0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{2C69E581-2D11-471F-9A2B-85ECED1410DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C69E581-2D11-471F-9A2B-85ECED1410DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C69E581-2D11-471F-9A2B-85ECED1410DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FE18102-E9E4-40EE-87DA-9D02FA9DB18D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FE18102-E9E4-40EE-87DA-9D02FA9DB18D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FE18102-E9E4-40EE-87DA-9D02FA9DB18D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FE18102-E9E4-40EE-87DA-9D02FA9DB18D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3911BE02-8147-46A5-8F2C-8AD079DF6A0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3911BE02-8147-46A5-8F2C-8AD079DF6A0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3911BE02-8147-46A5-8F2C-8AD079DF6A0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3911BE02-8147-46A5-8F2C-8AD079DF6A0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
