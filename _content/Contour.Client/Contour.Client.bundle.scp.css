@@ -5,3 +5,11 @@
     margin: 1em 0;
     background-image: url('background.png');
 }
+
+.point[b-zovjo6jz0c] {
+    transition: transform 0.3s ease;
+}
+
+    .point:hover[b-zovjo6jz0c] {
+        stroke: grey;
+    }

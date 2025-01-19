@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "ContourApp",
   "resources": {
-    "hash": "sha256-weZz+OwiRml6VmU1G4T1Nm1kWjhsdNRa5NTmd+OalOc=",
+    "hash": "sha256-JPwlojB2pwvUdRMrMHywoL2rwWdRed7U+997xNpv0BA=",
     "jsModuleNative": {
       "dotnet.native.8.0.12.5019ia6r61.js": "sha256-B6DNRvFeCUi3jbx9uKpuj+hV9cN0KG4RdZj1FgBZwj8="
     },
@@ -17,9 +17,9 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "Contour.Client.wasm": "sha256-4iixr1fn1JCKQDmZ71DbqMhAIPm6NdEcm4+Wk+hjPEQ=",
-      "Contour.Core.wasm": "sha256-GeT4zq/7fpkAuWdDii5kOESnesSX+89f6aQWqIhtRkE=",
-      "ContourApp.wasm": "sha256-fYBz8uvS0ZG1JQExlg67DwDFkZyWDop/YPo2orZ0F/g=",
+      "Contour.Client.wasm": "sha256-fY6gJn6g+1ZYNCRXPc3fE9BMAYu+O/41tT/kwftyh/Y=",
+      "Contour.Core.wasm": "sha256-wyaH0PwHy1Iq5trLl808e9OhViP9UQmc15M/gtGYxLw=",
+      "ContourApp.wasm": "sha256-wmEJx8XW/dWY1ok+ReyQqbWqXJ9vXC36BwYdD+a4Awg=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-2CZa75z6+o0X97El1HbeDr+0YwnU8hb77L2WqZsa9k8=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-SYARg2pDFH0tGC+Q+NalKlL45h/ETHY5RCB6SY+lhk0=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-9pa4TX6FPCR8IZ3hObhj8D/J0Rp+4PZ1bfCK0WQAIZ8=",
@@ -52,7 +52,7 @@
       "System.Private.CoreLib.wasm": "sha256-GuTk5EBrk/dl+I7nwFi8SeX1Y77Mv3z3E4sgu9MQZrw=",
       "System.Private.Uri.wasm": "sha256-ibIZQNE5PX5YSOSjHG5bqd0479rTgJXM7b3/EgVwPdM=",
       "System.Runtime.InteropServices.JavaScript.wasm": "sha256-oNp/YIQyu6e+Wlpa7ea10NeDfEvX1jqGhjekmPLqSYw=",
-      "System.Runtime.wasm": "sha256-6BAxZOBLjo9UF8/6BBsLTIycsuAEzL8npFZ6bbKNdsA=",
+      "System.Runtime.wasm": "sha256-/UwDPg94porAIrEPoYlHxlEpPHcNLI/RN/yDQSj3C3I=",
       "System.Text.Encodings.Web.wasm": "sha256-TbTf3YP030rwzmQ1f/y639avMFM0Co59q7+FXYzPfyQ=",
       "System.Text.Json.wasm": "sha256-bA1T1Iug3xLJdymJNcPiYypXYS4I/w9bBXZ5VUodSSA=",
       "System.Text.RegularExpressions.wasm": "sha256-JbUrkeYSg35S3jvu5HkdLQps3o2CDHulc5qG1TAtRKA="
