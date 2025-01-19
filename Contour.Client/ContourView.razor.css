@@ -4,3 +4,11 @@
     margin: 1em 0;
     background-image: url('background.png');
 }
+
+.point {
+    transition: transform 0.3s ease;
+}
+
+    .point:hover {
+        stroke: grey;
+    }

@@ -1,11 +1,12 @@
 using Contour.Core;
+using System.Runtime.CompilerServices;
 
 namespace Contour.Core.Test
 {
     public class DelaunayTriangulationTest
     {
         [Fact]
-        public void CreatesSingleTriangleAround3DistinctPoints()
+        public async Task CreatesSingleTriangleAround3DistinctPoints()
         {
             //Arrange
             var testPoints = new List<Point> { new Point(0.0, 0.0), new Point(0.0, 1.0), new Point(1.0, 1.0) };
@@ -13,14 +14,14 @@ namespace Contour.Core.Test
             var triangulation = new DelaunayTriangulation(testPoints);
 
             //Act
-            var triangles = triangulation.Triangulate();
+            var triangles = await triangulation.Triangulate();
 
             //Assert
             Assert.Equal(new List<Triangle> { new Triangle(testPoints) }, triangles);
         }
 
         [Fact]
-        public void CreatesTriangulationAround4DistinctPoints()
+        public async Task CreatesTriangulationAround4DistinctPoints()
         {
             //Arrange
             var testPoints = new List<Point> { new Point(0.0, 0.0), new Point(0.0, 0.9), new Point(1.0, 1.0), new Point(1.1, 0.1) };
@@ -28,7 +29,7 @@ namespace Contour.Core.Test
             var triangulation = new DelaunayTriangulation(testPoints);
 
             //Act
-            var triangles = triangulation.Triangulate();
+            var triangles = await triangulation.Triangulate();
 
             //Assert
             Assert.Equal(new List<Triangle> 
@@ -40,7 +41,7 @@ namespace Contour.Core.Test
         }
 
         [Fact]
-        public void HandlesRegularGridOfPoints()
+        public async Task HandlesRegularGridOfPoints()
         {
             //Arrange
             var testPoints = new List<Point> { new Point(0.0, 0.0), new Point(0.0, 1.0), new Point(1.0, 1.0), new Point(1.0, 0.0) };
@@ -48,7 +49,7 @@ namespace Contour.Core.Test
             var triangulation = new DelaunayTriangulation(testPoints);
 
             //Act
-            var triangles = triangulation.Triangulate();
+            var triangles = await triangulation.Triangulate();
 
             //Assert
             Assert.Equal(new List<Triangle>

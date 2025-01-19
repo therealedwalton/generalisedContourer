@@ -10,7 +10,7 @@ namespace Contour.Core
             Points = points;
         }
 
-        public IEnumerable<Triangle> Triangulate()
+        public async Task<IEnumerable<Triangle>> Triangulate()
         {
             if (Points.Count < 3)
                 throw new ArgumentException("At least 3 points are required for triangulation");
