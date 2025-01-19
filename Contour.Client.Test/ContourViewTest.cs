@@ -1,6 +1,6 @@
 using AngleSharp.Dom;
 using Bunit;
-using Contour.Client;
+using Contour.Client.Views;
 using Contour.Core;
 
 namespace Contour.Client.Test
@@ -78,6 +78,12 @@ namespace Contour.Client.Test
                     Assert.Equal(triangles[i].Vertices[upperIndex].y, double.Parse(lines[i * 3 + j].GetAttribute("y2")));
                 }
             }
+        }
+
+        [Fact]
+        public void ShouldDisplayAsCartesianCoordinates()
+        {
+            //TODO
         }
     }
 }

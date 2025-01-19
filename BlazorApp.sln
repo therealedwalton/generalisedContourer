@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contour.Core.Test", "Contou
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contour.Client", "Contour.Client\Contour.Client.csproj", "{8FE18102-E9E4-40EE-87DA-9D02FA9DB18D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contour.Client.Test", "Contour.Client.Test\Contour.Client.Test.csproj", "{3911BE02-8147-46A5-8F2C-8AD079DF6A0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contour.Client.Test", "Contour.Client.Test\Contour.Client.Test.csproj", "{3911BE02-8147-46A5-8F2C-8AD079DF6A0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

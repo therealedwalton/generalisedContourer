@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contour.Client
+namespace Contour.Client.Views
 {
     public partial class ContourView
     {
@@ -17,6 +17,11 @@ namespace Contour.Client
         IEnumerable<Triangle> Triangles { get; set; } = new List<Triangle>();
 
         protected override async Task OnParametersSetAsync()
+        {
+            await UpdatePlot();
+        }
+
+        public async Task UpdatePlot()
         {
             if (Points?.Count > 0)
             {
