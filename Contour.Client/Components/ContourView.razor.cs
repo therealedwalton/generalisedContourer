@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contour.Client.Views
+namespace Contour.Client.Components
 {
     public partial class ContourView
     {

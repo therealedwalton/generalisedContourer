@@ -1,0 +1,15 @@
+﻿@page "/"
+@using Contour.Client.Components
+
+<PageTitle>Contour Plot</PageTitle>
+
+<h1>Contour Plot</h1>
+
+<MudGrid Style="align-items: flex-start;">
+    <MudItem xs="12" md="6">
+        <ContourView Points="@points" @ref="contourView"></ContourView>
+    </MudItem>
+    <MudItem xs="12" md="6">
+        <PointsEditor Points="@points" UpdateRequest="() => UpdatePlot()"></PointsEditor>
+    </MudItem>
+</MudGrid>

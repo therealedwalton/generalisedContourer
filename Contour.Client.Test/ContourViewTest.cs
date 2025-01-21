@@ -1,6 +1,6 @@
 using AngleSharp.Dom;
 using Bunit;
-using Contour.Client.Views;
+using Contour.Client.Components;
 using Contour.Core;
 
 namespace Contour.Client.Test
