@@ -1,15 +1,15 @@
-/* _content/Contour.Client/Views/ContourView.razor.rz.scp.css */
-.my-component[b-24so7ullks] {
+/* _content/Contour.Client/Components/ContourView.razor.rz.scp.css */
+.my-component[b-ddmimwc0yn] {
     border: 2px dashed red;
     padding: 1em;
     margin: 1em 0;
     background-image: url('background.png');
 }
 
-.point[b-24so7ullks] {
+.point[b-ddmimwc0yn] {
     transition: transform 0.3s ease;
 }
 
-    .point:hover[b-24so7ullks] {
+    .point:hover[b-ddmimwc0yn] {
         stroke: grey;
     }
