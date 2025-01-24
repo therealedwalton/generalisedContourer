@@ -43,7 +43,7 @@ namespace Contour.Client.Test
             for (int i = 0; i < points.Count; i++) 
             {
                 Assert.Equal(points[i].x, double.Parse(circles[i].GetAttribute("cx")));
-                Assert.Equal(points[i].y, double.Parse(circles[i].GetAttribute("cy")));
+                Assert.Equal(points[i].y, ConvertYToSvgY(double.Parse(circles[i].GetAttribute("cy"))));
             }
         }
 
@@ -65,25 +65,50 @@ namespace Contour.Client.Test
 
             // Assert
             Assert.Equal(triangles.Count * 3, lines.Count);
-
-            for (int i = 0; i < triangles.Count; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    Assert.Equal(triangles[i].Vertices[j].x, double.Parse(lines[i * 3 + j].GetAttribute("x1")));
-                    Assert.Equal(triangles[i].Vertices[j].y, double.Parse(lines[i * 3 + j].GetAttribute("y1")));
-
-                    var upperIndex = j + 1 > 2 ? 0 : j + 1;
-                    Assert.Equal(triangles[i].Vertices[upperIndex].x, double.Parse(lines[i * 3 + j].GetAttribute("x2")));
-                    Assert.Equal(triangles[i].Vertices[upperIndex].y, double.Parse(lines[i * 3 + j].GetAttribute("y2")));
-                }
-            }
+            AssertLinesMatchTriangles(triangles, lines);
         }
 
         [Fact]
         public void ShouldDisplayAsCartesianCoordinates()
         {
-            //TODO
+            // Arrange
+            var points = new List<Point>()
+            {
+                new Point(5, 5),
+                new Point(0, 0),
+                new Point(10, 10),
+            };
+
+            var cut = RenderComponent<ContourView>(parameters => parameters.Add(p => p.Points, points));
+
+            // Act
+            var circles = cut.FindAll("circle");
+
+            // Assert
+            Assert.True(double.Parse(circles.First().GetAttribute("cx")) < double.Parse(circles.Last().GetAttribute("cx")), "Higher x value did not get drawn as higher svg x position");
+            Assert.True(double.Parse(circles.First().GetAttribute("cy")) > double.Parse(circles.Last().GetAttribute("cy")), "Higher y value did not get drawn as lower svg y position");
+
+        }
+
+        private static double ConvertYToSvgY(double y)
+        {
+            return 100 - y;
+        }
+
+        private static void AssertLinesMatchTriangles(List<Triangle> triangles, IRefreshableElementCollection<IElement> lines)
+        {
+            for (int i = 0; i < triangles.Count; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    Assert.Equal(triangles[i].Vertices[j].x, double.Parse(lines[i * 3 + j].GetAttribute("x1")));
+                    Assert.Equal(triangles[i].Vertices[j].y, ConvertYToSvgY(double.Parse(lines[i * 3 + j].GetAttribute("y1"))));
+
+                    var upperIndex = j + 1 > 2 ? 0 : j + 1;
+                    Assert.Equal(triangles[i].Vertices[upperIndex].x, double.Parse(lines[i * 3 + j].GetAttribute("x2")));
+                    Assert.Equal(triangles[i].Vertices[upperIndex].y, ConvertYToSvgY(double.Parse(lines[i * 3 + j].GetAttribute("y2"))));
+                }
+            }
         }
     }
 }

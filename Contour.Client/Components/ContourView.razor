@@ -10,13 +10,13 @@
     preserveAspectRatio="xMidYMid meet">
     @foreach (var triangle in Triangles)
     {
-        <line x1="@triangle.Vertices[0].x" y1="@triangle.Vertices[0].y" x2="@triangle.Vertices[1].x" y2="@triangle.Vertices[1].y" stroke="red" stroke-width="0.2"></line>
-        <line x1="@triangle.Vertices[1].x" y1="@triangle.Vertices[1].y" x2="@triangle.Vertices[2].x" y2="@triangle.Vertices[2].y" stroke="red" stroke-width="0.2"></line>
-        <line x1="@triangle.Vertices[2].x" y1="@triangle.Vertices[2].y" x2="@triangle.Vertices[0].x" y2="@triangle.Vertices[0].y" stroke="red" stroke-width="0.2"></line>
+        <line x1="@triangle.Vertices[0].x" y1="@ConvertYToSvgY(triangle.Vertices[0].y)" x2="@triangle.Vertices[1].x" y2="@ConvertYToSvgY(triangle.Vertices[1].y)" stroke="red" stroke-width="0.2"></line>
+        <line x1="@triangle.Vertices[1].x" y1="@ConvertYToSvgY(triangle.Vertices[1].y)" x2="@triangle.Vertices[2].x" y2="@ConvertYToSvgY(triangle.Vertices[2].y)" stroke="red" stroke-width="0.2"></line>
+        <line x1="@triangle.Vertices[2].x" y1="@ConvertYToSvgY(triangle.Vertices[2].y)" x2="@triangle.Vertices[0].x" y2="@ConvertYToSvgY(triangle.Vertices[0].y)" stroke="red" stroke-width="0.2"></line>
     }
     @foreach(var point in Points)
     {
-        <circle class="point" cx="@point.x" cy="@point.y" r="0.5"></circle>
+        <circle class="point" cx="@point.x" cy="@ConvertYToSvgY(point.y)" r="0.5"></circle>
     }
 </svg>
 

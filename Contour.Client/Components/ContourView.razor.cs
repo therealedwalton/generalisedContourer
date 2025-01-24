@@ -31,6 +31,11 @@ namespace Contour.Client.Components
             }
         }
 
+        private double ConvertYToSvgY(double y)
+        {
+            return 100 - y;
+        }
+
         //https://www.petercollingridge.co.uk/tutorials/svg/interactive/dragging/
         //https://github.com/KristofferStrube/Blazor.SVGEditor
         //protected void HandleMouseDown(MouseEventArgs args, object obj)
