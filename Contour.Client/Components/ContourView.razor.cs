@@ -14,7 +14,15 @@ namespace Contour.Client.Components
         [Parameter]
         public List<Point> Points { get; set; } = new List<Point>();
 
+        public Func<double, double> MappingY { get; private set; } = y => -y;
+
         IEnumerable<Triangle> Triangles { get; set; } = new List<Triangle>();
+
+        Point ViewboxOrigin { get; set; } = new Point(0, -100);
+
+        Point ViewboxSize { get; set; } = new Point(100, 100);
+
+        double paddingPercentage = 0.1;
 
         protected override async Task OnParametersSetAsync()
         {
@@ -28,12 +36,21 @@ namespace Contour.Client.Components
                 var triangulation = new DelaunayTriangulation(Points);
 
                 Triangles = await triangulation.Triangulate();
+
+                CalculateViewBox();
             }
         }
 
-        private double ConvertYToSvgY(double y)
+        protected void CalculateViewBox()
         {
-            return 100 - y;
+            var minX = Points.Min(p => p.x);
+            var minY = MappingY(Points.Max(p => p.y));
+
+            var width = Points.Max(p => p.x) - minX;
+            var height = MappingY(Points.Min(p => p.y)) - minY;
+
+            ViewboxOrigin = new Point(minX - paddingPercentage * width, minY - paddingPercentage * height);
+            ViewboxSize = new Point(width + 2 * paddingPercentage * width, height + 2 * paddingPercentage * width);
         }
 
         //https://www.petercollingridge.co.uk/tutorials/svg/interactive/dragging/
