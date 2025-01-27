@@ -8,8 +8,14 @@
 
 .point[b-ddmimwc0yn] {
     transition: transform 0.3s ease;
+    stroke-width: 0;
+    fill: black;
 }
 
     .point:hover[b-ddmimwc0yn] {
-        stroke: grey;
+        fill: grey;
     }
+
+.tri-line[b-ddmimwc0yn] {
+    stroke: red;
+}
