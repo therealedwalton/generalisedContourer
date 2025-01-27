@@ -23,6 +23,7 @@ namespace Contour.Client.Components
         Point ViewboxSize { get; set; } = new Point(100, 100);
 
         double paddingPercentage = 0.1;
+        double typicalElementSize = 0.2;
 
         protected override async Task OnParametersSetAsync()
         {
@@ -48,6 +49,8 @@ namespace Contour.Client.Components
 
             var width = Points.Max(p => p.x) - minX;
             var height = MappingY(Points.Min(p => p.y)) - minY;
+
+            typicalElementSize = Math.Max(width, height) * 0.005;
 
             ViewboxOrigin = new Point(minX - paddingPercentage * width, minY - paddingPercentage * height);
             ViewboxSize = new Point(width + 2 * paddingPercentage * width, height + 2 * paddingPercentage * width);

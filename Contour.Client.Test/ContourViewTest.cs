@@ -109,6 +109,40 @@ namespace Contour.Client.Test
             AssertPointsFitInViewbox(points, mappingY, x, y, width, height);
         }
 
+        [Fact]
+        public void ShouldScaleElementsToFitView()
+        {
+            // Arrange
+            var smallPlotPoints = CreatePointSet(10);
+            var largePlotPoints = CreatePointSet(1000);
+
+            var cut = RenderComponent<ContourView>(parameters => parameters.Add(p => p.Points, smallPlotPoints));
+            var mappingY = cut.Instance.MappingY;
+
+            // Act
+            var smallPlotCircleR = cut.Find("circle").GetAttribute("r");
+            var smallPlotLineWidth = cut.Find("line").GetAttribute("stroke-width");
+
+            cut.SetParametersAndRender(parameters => parameters.Add(p => p.Points, largePlotPoints));
+
+            var largePlotCircle = cut.Find("circle");
+            var largePlotLine = cut.Find("line");
+
+            // Assert
+            Assert.True(double.Parse(smallPlotCircleR) < double.Parse(largePlotCircle.GetAttribute("r")), "Circle radius did not increase for large plots");
+            Assert.True(double.Parse(smallPlotLineWidth) < double.Parse(largePlotLine.GetAttribute("stroke-width")), "line width did not increase for large plots");
+        }
+
+        private static List<Point> CreatePointSet(double typicalValue)
+        {
+            return new List<Point>
+            {
+                new Point(0.0, 0.0),
+                new Point(typicalValue, 0.0),
+                new Point(0.0, typicalValue),
+            };
+        }
+
         private static void AssertPointsFitInViewbox(IEnumerable<Point> points, Func<double, double> mappingY, double x, double y, double width, double height)
         {
             var minX = points.Min(p => p.x);
@@ -154,21 +188,11 @@ namespace Contour.Client.Test
             {
                 new object[]
                 {
-                    new List<Point>
-                    {
-                        new Point(0.0, 0.0),
-                        new Point(10.0, 0.0),
-                        new Point(0.0, 10.0),
-                    },
+                    CreatePointSet(10)
                 },
                 new object[]
                 {
-                    new List<Point>
-                    {
-                        new Point(0.0, 0.0),
-                        new Point(1000.0, 0.0),
-                        new Point(0.0, 1000.0),
-                    }
+                    CreatePointSet(1000)
                 },
             };
     }

@@ -7,8 +7,14 @@
 
 .point {
     transition: transform 0.3s ease;
+    stroke-width: 0;
+    fill: black;
 }
 
     .point:hover {
-        stroke: grey;
+        fill: grey;
     }
+
+.tri-line {
+    stroke: red;
+}
