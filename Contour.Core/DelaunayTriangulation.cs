@@ -10,12 +10,12 @@ namespace Contour.Core
             Points = points;
         }
 
-        public async Task<IEnumerable<Triangle>> Triangulate()
+        public async Task<IEnumerable<Triangle<Point>>> Triangulate()
         {
             if (Points.Count < 3)
                 throw new ArgumentException("At least 3 points are required for triangulation");
 
-            var triangles = new List<Triangle>();
+            var triangles = new List<Triangle<Point>>();
 
             var superTriangle = CreateSuperTriangle();
 
@@ -24,7 +24,7 @@ namespace Contour.Core
             // Add points one by one
             foreach (var point in Points)
             {
-                List<Triangle> badTriangles = FindTrianglesWithPointInsideCircumcircle(triangles, point);
+                List<Triangle<Point>> badTriangles = FindTrianglesWithPointInsideCircumcircle(triangles, point);
 
                 List<Edge> polygon = FindPolygonHoleBoundary(badTriangles);
 
@@ -38,22 +38,22 @@ namespace Contour.Core
             return triangles;
         }
 
-        private static void RemoveVerticesOnSuperTriangle(List<Triangle> triangles, Triangle superTriangle)
+        private static void RemoveVerticesOnSuperTriangle(List<Triangle<Point>> triangles, Triangle<Point> superTriangle)
         {
             triangles.RemoveAll(t => t.Vertices.Any(v => v == superTriangle.Vertices[0] || v == superTriangle.Vertices[1] || v == superTriangle.Vertices[2]));
         }
 
-        private static void TriangulatePolygonHole(List<Triangle> triangles, Point point, List<Edge> polygon)
+        private static void TriangulatePolygonHole(List<Triangle<Point>> triangles, Point point, List<Edge> polygon)
         {
             foreach (var edge in polygon)
             {
-                triangles.Add(new Triangle(edge.Start, edge.End, point));
+                triangles.Add(new Triangle<Point>(edge.Start, edge.End, point));
             }
         }
 
-        private static List<Triangle> FindTrianglesWithPointInsideCircumcircle(List<Triangle> triangles, Point point)
+        private static List<Triangle<Point>> FindTrianglesWithPointInsideCircumcircle(List<Triangle<Point>> triangles, Point point)
         {
-            var badTriangles = new List<Triangle>();
+            var badTriangles = new List<Triangle<Point>>();
 
             foreach (var triangle in triangles)
             {
@@ -66,7 +66,7 @@ namespace Contour.Core
             return badTriangles;
         }
 
-        private List<Edge> FindPolygonHoleBoundary(List<Triangle> badTriangles)
+        private List<Edge> FindPolygonHoleBoundary(List<Triangle<Point>> badTriangles)
         {
             var polygon = new List<Edge>();
 
@@ -86,7 +86,7 @@ namespace Contour.Core
             return polygon;
         }
 
-        private static void RemoveBadTriangles(List<Triangle> triangles, List<Triangle> badTriangles)
+        private static void RemoveBadTriangles(List<Triangle<Point>> triangles, List<Triangle<Point>> badTriangles)
         {
             foreach (var triangle in badTriangles)
             {
@@ -94,7 +94,7 @@ namespace Contour.Core
             }
         }
 
-        private Triangle CreateSuperTriangle()
+        private Triangle<Point> CreateSuperTriangle()
         {
             // Create super triangle that contains all points
             double minX = Points.Min(p => p.x);
@@ -112,12 +112,12 @@ namespace Contour.Core
             var p2 = new Point(midX, midY + 2 * dmax);
             var p3 = new Point(midX + 2 * dmax, midY - dmax);
 
-            var superTriangle = new Triangle(p1, p2, p3);
+            var superTriangle = new Triangle<Point>(p1, p2, p3);
 
             return superTriangle;
         }
 
-        private bool IsSharedEdge(Edge edge, List<Triangle> triangles)
+        private bool IsSharedEdge(Edge edge, List<Triangle<Point>> triangles)
         {
             int count = 0;
             foreach (var triangle in triangles)

@@ -2,23 +2,23 @@
 
 namespace Contour.Core
 {
-    public class Triangle
+    public class Triangle<T> where T : Point
     {
-        public List<Point> Vertices { get; }
+        public List<T> Vertices { get; }
 
-        public Triangle(List<Point> vertices)
+        public Triangle(List<T> vertices)
         {
             this.Vertices = vertices;
         }
 
-        public Triangle(params Point[] vertices)
+        public Triangle(params T[] vertices)
         {
             this.Vertices = vertices.ToList();
         }
 
         public override bool Equals(object? obj)
         {
-            var item = obj as Triangle;
+            var item = obj as Triangle<T>;
 
             if(item == null)
             {
@@ -68,4 +68,6 @@ namespace Contour.Core
             return new Circle(center, radius);
         }
     }
+
+    public class Triangle2D : Triangle<Point> { }
 }

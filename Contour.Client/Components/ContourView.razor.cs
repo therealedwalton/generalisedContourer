@@ -16,7 +16,7 @@ namespace Contour.Client.Components
 
         public Func<double, double> MappingY { get; private set; } = y => -y;
 
-        IEnumerable<Triangle> Triangles { get; set; } = new List<Triangle>();
+        IEnumerable<Triangle<Point>> Triangles { get; set; } = new List<Triangle<Point>>();
 
         Point ViewboxOrigin { get; set; } = new Point(0, -100);
 

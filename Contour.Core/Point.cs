@@ -25,18 +25,10 @@
 
         public override int GetHashCode()
         {
-            unchecked
-            {
-                int hash = 17;
-
-                hash = hash * 23 + x.GetHashCode();
-                hash = hash * 23 + y.GetHashCode();
-
-                return hash;
-            }
+            return HashCode.Combine(x, y);
         }
 
-        private static bool ApproximatelyEqual(double one, double two)
+        protected static bool ApproximatelyEqual(double one, double two)
         {
             return Math.Abs(one - two) < 1E-15;
         }

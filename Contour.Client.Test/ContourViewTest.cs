@@ -53,10 +53,10 @@ namespace Contour.Client.Test
         {
             // Arrange
             var testPoints = new List<Point> { new Point(0.0, 0.0), new Point(0.0, 1.0), new Point(1.0, 1.0), new Point(1.0, 0.0) };
-            var triangles = new List<Triangle>
+            var triangles = new List<Triangle<Point>>
             {
-                new Triangle(testPoints[0], testPoints[1], testPoints[3]),
-                new Triangle(testPoints[1], testPoints[2], testPoints[3])
+                new Triangle<Point>(testPoints[0], testPoints[1], testPoints[3]),
+                new Triangle<Point>(testPoints[1], testPoints[2], testPoints[3])
             };
 
             var cut = RenderComponent<ContourView>(parameters => parameters.Add(p => p.Points, testPoints));
@@ -161,7 +161,7 @@ namespace Contour.Client.Test
             Assert.True(y + height < minY + pointsHeight * 2, $"Viewbox y ({y + height}) was significantly less than the maximum y value({minY + pointsHeight})");
         }
 
-        private static void AssertLinesMatchTriangles(List<Triangle> triangles, IRefreshableElementCollection<IElement> lines, Func<double, double> mappingY)
+        private static void AssertLinesMatchTriangles(List<Triangle<Point>> triangles, IRefreshableElementCollection<IElement> lines, Func<double, double> mappingY)
         {
             for (int i = 0; i < triangles.Count; i++)
             {
