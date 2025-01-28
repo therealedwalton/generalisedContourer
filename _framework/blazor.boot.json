@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "ContourApp",
   "resources": {
-    "hash": "sha256-sXOggvLHKFt4zMFc6PBdEZGoK03PQJ7Nzqjmh/aKRS4=",
+    "hash": "sha256-8X4iiB1e1vxIiy/i2tbGnbtTs9sDOk7LDBu0bcN5sJk=",
     "jsModuleNative": {
       "dotnet.native.8.0.12.5019ia6r61.js": "sha256-B6DNRvFeCUi3jbx9uKpuj+hV9cN0KG4RdZj1FgBZwj8="
     },
@@ -18,9 +18,9 @@
     },
     "assembly": {
       "Blazored.LocalStorage.wasm": "sha256-OaMAAd5n7ORfyur5e3QIyEVKJ76MKIvwbg7/icnnYcU=",
-      "Contour.Client.wasm": "sha256-pho33yU0LgpjXr6FPwRYZhAb5wbTFSNWtIx3eQOanIs=",
-      "Contour.Core.wasm": "sha256-LTA0pEr9FQSlw2P8Z6Xo7zjOsmC50OFxWJbOzH5Ou0o=",
-      "ContourApp.wasm": "sha256-//phXlq0rDsRFG9Hcm1l8GFh5p9TgmHI7NO60Zz2ekQ=",
+      "Contour.Client.wasm": "sha256-gPNnDAQkrFjiaNfGOEfUCKcfQpY6nmVK0AliojXwh5Y=",
+      "Contour.Core.wasm": "sha256-H59fnZ/yHibjG8WB5Tc51zj7pxZSsw+OXXL3qzmHPiM=",
+      "ContourApp.wasm": "sha256-wRR4Qs8UxeI6krUkcDdkdhzNdHyckgHMWKNdrKEuU+s=",
       "Microsoft.AspNetCore.Components.Forms.wasm": "sha256-un0mWHcNYsRjdRZz/RwoEXZ36QV3diPGsr1753foDzQ=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-byWsNG9zZ/+Af+HapO6S9jK75ml8FMekoJ9+UtYI+d4=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-ecbafn+C9fpuPCCFfbIp2RHZOGzJwSpj15EtkS7Plws=",
