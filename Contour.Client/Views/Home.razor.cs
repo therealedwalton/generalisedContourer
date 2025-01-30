@@ -10,13 +10,13 @@ namespace Contour.Client.Views
         [Inject]
         private ILocalStorageService localStorageService { get; set; }
 
-        List<Point> points = new List<Point>();
+        List<ValuePoint> points = new List<ValuePoint>();
 
         ContourView contourView;
 
         protected override async Task OnInitializedAsync()
         {
-            points = await localStorageService.GetItemAsync<List<Point>>("contourPoints");
+            points = await localStorageService.GetItemAsync<List<ValuePoint>>("contourPoints");
 
             if (points == null || points.Count == 0)
             {
@@ -24,13 +24,14 @@ namespace Contour.Client.Views
                 var minValue = 0;
                 var maxValue = 100;
 
-                points = new List<Point>();
+                points = new List<ValuePoint>();
 
                 for (int i = 0; i < 20; i++)
                 {
                     double x = minValue + (random.NextDouble() * (maxValue - minValue));
                     double y = minValue + (random.NextDouble() * (maxValue - minValue));
-                    points.Add(new Point(x, y));
+                    double z = minValue + (random.NextDouble() * (maxValue - minValue));
+                    points.Add(new ValuePoint(x, y, z));
                 }
             }
         }

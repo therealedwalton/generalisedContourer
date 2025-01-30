@@ -39,15 +39,18 @@ namespace Contour.Client.Test
             // Act
             var xInputs = cut.FindAll(".point-x input");
             var yInputs = cut.FindAll(".point-y input");
+            var zInputs = cut.FindAll(".point-z input");
 
             // Assert
             Assert.Equal(points.Count, xInputs.Count);
             Assert.Equal(points.Count, yInputs.Count);
+            Assert.Equal(points.Count, zInputs.Count);
 
             for (var i = 0; i < points.Count; i++)
             {
                 Assert.Equal(points[i].x.ToString(), xInputs[i].GetAttribute("value"));
                 Assert.Equal(points[i].y.ToString(), yInputs[i].GetAttribute("value"));
+                Assert.Equal(points[i].z.ToString(), zInputs[i].GetAttribute("value"));
             }
         }
 
@@ -61,16 +64,20 @@ namespace Contour.Client.Test
             // Act
             var xInput = cut.Find(".point-x input");
             var yInput = cut.Find(".point-y input");
+            var zInput = cut.Find(".point-z input");
 
             var newXValue = points[0].x + 1;
             var newYValue = points[0].y + 1;
+            var newZValue = points[0].z + 1;
 
             xInput.Change(newXValue);
             yInput.Change(newYValue);
+            zInput.Change(newZValue);
 
             // Assert
             Assert.Equal(newXValue, points[0].x);
             Assert.Equal(newYValue, points[0].y);
+            Assert.Equal(newZValue, points[0].z);
         }
 
         [Fact]
@@ -120,13 +127,13 @@ namespace Contour.Client.Test
             Assert.True(updateCalled);
         }
 
-        private List<Point> CreatePoints(int numberOfPoints)
+        private List<ValuePoint> CreatePoints(int numberOfPoints)
         {
-            var points = new List<Point>();
+            var points = new List<ValuePoint>();
 
             for (int i = 0; i < numberOfPoints; i++)
             {
-                points.Add(new Point(i, i + 0.5));
+                points.Add(new ValuePoint(i, i + 0.5, i + 2));
             }
 
             return points;

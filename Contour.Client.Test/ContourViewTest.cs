@@ -24,12 +24,12 @@ namespace Contour.Client.Test
         public void ShouldDisplayASeriesOfPoints()
         {
             // Arrange
-            var points = new List<Point>()
+            var points = new List<ValuePoint>()
             {
-                new Point(5, 5),
-                new Point(20, 14),
-                new Point(78, 90),
-                new Point(45, 64)
+                new ValuePoint(5, 5, 0),
+                new ValuePoint(20, 14, 1),
+                new ValuePoint(78, 90, 2),
+                new ValuePoint(45, 64, 1)
             };
 
             var cut = RenderComponent<ContourView>(parameters => parameters.Add(p => p.Points, points));
@@ -52,7 +52,7 @@ namespace Contour.Client.Test
         public void ShouldDisplayTriangulationOfPoints()
         {
             // Arrange
-            var testPoints = new List<Point> { new Point(0.0, 0.0), new Point(0.0, 1.0), new Point(1.0, 1.0), new Point(1.0, 0.0) };
+            var testPoints = new List<ValuePoint> { new ValuePoint(0.0, 0.0, 1), new ValuePoint(0.0, 1.0, 1), new ValuePoint(1.0, 1.0, 1), new ValuePoint(1.0, 0.0, 1) };
             var triangles = new List<Triangle<Point>>
             {
                 new Triangle<Point>(testPoints[0], testPoints[1], testPoints[3]),
@@ -74,11 +74,11 @@ namespace Contour.Client.Test
         public void ShouldDisplayAsCartesianCoordinates()
         {
             // Arrange
-            var points = new List<Point>()
+            var points = new List<ValuePoint>()
             {
-                new Point(5, 5),
-                new Point(0, 0),
-                new Point(10, 10),
+                new ValuePoint(5, 5, 1),
+                new ValuePoint(0, 0, 0),
+                new ValuePoint(10, 10, 1),
             };
 
             var cut = RenderComponent<ContourView>(parameters => parameters.Add(p => p.Points, points));
@@ -133,13 +133,13 @@ namespace Contour.Client.Test
             Assert.True(double.Parse(smallPlotLineWidth) < double.Parse(largePlotLine.GetAttribute("stroke-width")), "line width did not increase for large plots");
         }
 
-        private static List<Point> CreatePointSet(double typicalValue)
+        private static List<ValuePoint> CreatePointSet(double typicalValue)
         {
-            return new List<Point>
+            return new List<ValuePoint>
             {
-                new Point(0.0, 0.0),
-                new Point(typicalValue, 0.0),
-                new Point(0.0, typicalValue),
+                new ValuePoint(0.0, 0.0, typicalValue),
+                new ValuePoint(typicalValue, 0.0, 0),
+                new ValuePoint(0.0, typicalValue, typicalValue),
             };
         }
 

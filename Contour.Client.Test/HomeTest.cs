@@ -64,10 +64,10 @@ namespace Contour.Client.Test
         public void ShouldReturnStoredPointsIfAvailable()
         {
             // Arrange
-            var points = new List<Point>() { new Point(1,2), new Point(3, 4), new Point(5, 6) };
+            var points = new List<ValuePoint>() { new ValuePoint(1,2,1), new ValuePoint(3, 4, 2), new ValuePoint(5, 6, 10) };
 
-            mockLocalStorage.Setup(x => x.GetItemAsync<List<Point>>(It.IsAny<string>(), It.IsAny<CancellationToken>()))
-                .Returns(new ValueTask<List<Point>?>(points));
+            mockLocalStorage.Setup(x => x.GetItemAsync<List<ValuePoint>>(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+                .Returns(new ValueTask<List<ValuePoint>?>(points));
 
             var cut = RenderComponent<Home>();
 

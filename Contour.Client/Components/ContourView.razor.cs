@@ -12,11 +12,13 @@ namespace Contour.Client.Components
     public partial class ContourView
     {
         [Parameter]
-        public List<Point> Points { get; set; } = new List<Point>();
+        public List<ValuePoint> Points { get; set; } = new List<ValuePoint>();
 
         public Func<double, double> MappingY { get; private set; } = y => -y;
 
         IEnumerable<Triangle<Point>> Triangles { get; set; } = new List<Triangle<Point>>();
+
+        List<Edge> ContourLines { get; set; } = new List<Edge>();
 
         Point ViewboxOrigin { get; set; } = new Point(0, -100);
 
@@ -34,9 +36,13 @@ namespace Contour.Client.Components
         {
             if (Points?.Count > 0)
             {
-                var triangulation = new DelaunayTriangulation(Points);
+                var triangulation = new DelaunayTriangulation(Points.ConvertAll(x => x as Point));
 
                 Triangles = await triangulation.Triangulate();
+
+                var generator = new ContourGenerator();
+
+                ContourLines = await generator.GenerateContour(Triangles.Select(x => new Triangle<ValuePoint>(x.Vertices.Select(x => x as ValuePoint).ToList())).ToList(), 50);
 
                 CalculateViewBox();
             }

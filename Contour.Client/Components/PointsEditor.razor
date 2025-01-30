@@ -19,6 +19,7 @@
         <HeaderContent>
             <MudTh>X</MudTh>
             <MudTh>Y</MudTh>
+            <MudTh>Value</MudTh>
             <MudTh>Actions</MudTh>
         </HeaderContent>
         <RowTemplate>
@@ -27,6 +28,9 @@
             </MudTd>
             <MudTd>
                 <MudNumericField @bind-Value="@context.y" Class="point-y"/>
+            </MudTd>
+            <MudTd>
+                <MudNumericField @bind-Value="@context.z" Class="point-z" />
             </MudTd>
             <MudTd>
                 <MudIconButton Icon="@Icons.Material.Filled.Delete" 

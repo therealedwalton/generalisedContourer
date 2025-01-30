@@ -11,22 +11,22 @@ namespace Contour.Client.Components
     public partial class PointsEditor
     {
         [Parameter]
-        public List<Point> Points { get; set; } = new List<Point>();
+        public List<ValuePoint> Points { get; set; } = new List<ValuePoint>();
 
         [Parameter]
         public EventCallback UpdateRequest { get; set; }
 
         [Parameter]
-        public Point SelectedPoint { get; set; }
+        public ValuePoint SelectedPoint { get; set; }
 
         private void AddPoint()
         {
-            var newPoint = new Point(0, 0);
+            var newPoint = new ValuePoint(0, 0, 0);
             Points.Add(newPoint);
             SelectedPoint = newPoint;
         }
 
-        private void DeletePoint(Point point)
+        private void DeletePoint(ValuePoint point)
         {
             Points.Remove(point);
             if (SelectedPoint == point)
@@ -35,7 +35,7 @@ namespace Contour.Client.Components
             }
         }
 
-        private void SelectPoint(Point point)
+        private void SelectPoint(ValuePoint point)
         {
             SelectedPoint = point;
         }

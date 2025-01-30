@@ -14,6 +14,10 @@
         <line class="tri-line" x1="@triangle.Vertices[1].x" y1="@MappingY(triangle.Vertices[1].y)" x2="@triangle.Vertices[2].x" y2="@MappingY(triangle.Vertices[2].y)" stroke-width="@typicalElementSize"></line>
         <line class="tri-line" x1="@triangle.Vertices[2].x" y1="@MappingY(triangle.Vertices[2].y)" x2="@triangle.Vertices[0].x" y2="@MappingY(triangle.Vertices[0].y)" stroke-width="@typicalElementSize"></line>
     }
+    @foreach (var line in ContourLines)
+    {
+        <line x1="@line.Start.x" y1="@MappingY(line.Start.y)" x2="@line.End.x" y2="@MappingY(line.End.y)" stroke-width="@typicalElementSize" stroke="blue"></line>
+    }
     @foreach(var point in Points)
     {
         <circle class="point" cx="@point.x" cy="@MappingY(point.y)" r="@(2 * typicalElementSize)"></circle>
