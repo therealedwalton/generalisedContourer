@@ -14,11 +14,14 @@ namespace Contour.Client.Components
         [Parameter]
         public List<ValuePoint> Points { get; set; } = new List<ValuePoint>();
 
+        [Parameter]
+        public List<ContourLevel> ContourLevels { get; set; } = new List<ContourLevel>();
+
+        public List<ContourLevelData> ContourLines { get; set; } = new List<ContourLevelData>();
+
         public Func<double, double> MappingY { get; private set; } = y => -y;
 
         IEnumerable<Triangle<Point>> Triangles { get; set; } = new List<Triangle<Point>>();
-
-        List<Edge> ContourLines { get; set; } = new List<Edge>();
 
         Point ViewboxOrigin { get; set; } = new Point(0, -100);
 
@@ -42,7 +45,15 @@ namespace Contour.Client.Components
 
                 var generator = new ContourGenerator();
 
-                ContourLines = await generator.GenerateContour(Triangles.Select(x => new Triangle<ValuePoint>(x.Vertices.Select(x => x as ValuePoint).ToList())).ToList(), 50);
+                foreach (var level in ContourLevels)
+                {
+                    var levelLines = await generator.GenerateContour(Triangles.Select(x => new Triangle<ValuePoint>(x.Vertices.Select(x => x as ValuePoint).ToList())).ToList(), level.Value);
+
+                    if (levelLines.Count > 0)
+                    {
+                        ContourLines.Add(new ContourLevelData { Edges = levelLines, Level = level });
+                    }
+                }
 
                 CalculateViewBox();
             }

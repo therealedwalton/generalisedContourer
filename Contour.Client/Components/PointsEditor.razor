@@ -1,43 +1,40 @@
-﻿<MudPaper Class="pa-4">
-    <MudText Typo="Typo.h6" Class="mb-4">Points Editor</MudText>
-                
-    <MudTable Items="@Points" Dense="true" Hover="true" @bind-SelectedItem="SelectedPoint">
-        <ToolBarContent>
-            <MudButton Color="Color.Primary" 
-                        OnClick="AddPoint" 
-                        StartIcon="@Icons.Material.Filled.Add"
-                        Class="add-point-button">
-                Add Point
-            </MudButton>
-            <MudButton Color="Color.Primary"
-                       OnClick="Update"
-                       StartIcon="@Icons.Material.Filled.Update"
-                       Class="update-points-button">
-                Update
-            </MudButton>
-        </ToolBarContent>
-        <HeaderContent>
-            <MudTh>X</MudTh>
-            <MudTh>Y</MudTh>
-            <MudTh>Value</MudTh>
-            <MudTh>Actions</MudTh>
-        </HeaderContent>
-        <RowTemplate>
-            <MudTd>
-                <MudNumericField @bind-Value="@context.x" Class="point-x"/>
-            </MudTd>
-            <MudTd>
-                <MudNumericField @bind-Value="@context.y" Class="point-y"/>
-            </MudTd>
-            <MudTd>
-                <MudNumericField @bind-Value="@context.z" Class="point-z" />
-            </MudTd>
-            <MudTd>
-                <MudIconButton Icon="@Icons.Material.Filled.Delete" 
-                                Color="Color.Error" 
-                                OnClick="@(() => DeletePoint(context))"
-                                Class="delete-point-button"/>
-            </MudTd>
-        </RowTemplate>
-    </MudTable>
-</MudPaper>
+﻿
+<MudTable Items="@Points" Dense="true" Hover="true" @bind-SelectedItem="SelectedPoint">
+    <ToolBarContent>
+        <MudButton Color="Color.Primary" 
+                    OnClick="AddPoint" 
+                    StartIcon="@Icons.Material.Filled.Add"
+                    Class="add-point-button">
+            Add Point
+        </MudButton>
+        <MudButton Color="Color.Primary"
+                    OnClick="Update"
+                    StartIcon="@Icons.Material.Filled.Update"
+                    Class="update-points-button">
+            Update
+        </MudButton>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh>X</MudTh>
+        <MudTh>Y</MudTh>
+        <MudTh>Value</MudTh>
+        <MudTh>Actions</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd>
+            <MudNumericField @bind-Value="@context.x" Class="point-x"/>
+        </MudTd>
+        <MudTd>
+            <MudNumericField @bind-Value="@context.y" Class="point-y"/>
+        </MudTd>
+        <MudTd>
+            <MudNumericField @bind-Value="@context.z" Class="point-z" />
+        </MudTd>
+        <MudTd>
+            <MudIconButton Icon="@Icons.Material.Filled.Delete" 
+                            Color="Color.Error" 
+                            OnClick="@(() => DeletePoint(context))"
+                            Class="delete-point-button"/>
+        </MudTd>
+    </RowTemplate>
+</MudTable>

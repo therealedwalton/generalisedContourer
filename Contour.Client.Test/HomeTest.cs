@@ -23,7 +23,7 @@ namespace Contour.Client.Test
             mockLocalStorage = new Mock<ILocalStorageService>();
 
             JSInterop.Mode = JSRuntimeMode.Loose;
-            Services.AddMudServices();
+            Services.AddMudServices(options => { options.PopoverOptions.CheckForPopoverProvider = false; });
             Services.AddScoped((x) => mockLocalStorage.Object);
         }
 
@@ -61,6 +61,24 @@ namespace Contour.Client.Test
         }
 
         [Fact]
+        public void ShouldGenerateContourLevelsIfNoLocalStorage()
+        {
+            // Arrange
+            mockLocalStorage.Setup(x => x.GetItemAsync<List<ContourLevel>>(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+                .Returns(new ValueTask<List<ContourLevel>?>(new List<ContourLevel>()));
+
+            var cut = RenderComponent<Home>();
+
+            // Act
+            ClickTab(cut, "Contours");
+
+            var contourLevelView = cut.FindComponent<ContourLevelEditor>();
+
+            // Assert
+            Assert.True(contourLevelView.Instance.ContourLevels.Count > 0);
+        }
+
+        [Fact]
         public void ShouldReturnStoredPointsIfAvailable()
         {
             // Arrange
@@ -78,6 +96,32 @@ namespace Contour.Client.Test
             // Assert
             Assert.Equal(points, contourView.Instance.Points);
             Assert.Equal(points, pointsEditor.Instance.Points);
+        }
+
+        [Fact]
+        public void ShouldReturnStoredContourLevelsIfAvailable()
+        {
+            // Arrange
+            var contourLevels = new List<ContourLevel>() { new ContourLevel(), new ContourLevel() };
+
+            mockLocalStorage.Setup(x => x.GetItemAsync<List<ContourLevel>>(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+                .Returns(new ValueTask<List<ContourLevel>?>(contourLevels));
+
+            var cut = RenderComponent<Home>();
+
+            // Act
+            ClickTab(cut, "Contours");
+
+            var contourLevelView = cut.FindComponent<ContourLevelEditor>();
+
+            // Assert
+            Assert.Equal(contourLevels, contourLevelView.Instance.ContourLevels);
+        }
+
+        private void ClickTab(IRenderedComponent<Home> cut, string tabName)
+        {
+            var contourTab = cut.FindAll(".mud-tab").FirstOrDefault(x => x.InnerHtml == tabName);
+            contourTab?.Click();
         }
     }
 }

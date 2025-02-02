@@ -133,6 +133,50 @@ namespace Contour.Client.Test
             Assert.True(double.Parse(smallPlotLineWidth) < double.Parse(largePlotLine.GetAttribute("stroke-width")), "line width did not increase for large plots");
         }
 
+        [Fact]
+        public void ShouldDisplayASingleContour()
+        {
+            // Arrange
+            var testPoints = new List<ValuePoint> { new ValuePoint(0.0, 0.0, 0), new ValuePoint(0.0, 1.0, 1), new ValuePoint(1.0, 1.0, 1) };
+            var contourLevels = new List<ContourLevel> { new ContourLevel { Value = 0.5, Colour = "#ff0000" } };
+
+            var cut = RenderComponent<ContourView>(parameters => parameters
+                .Add(p => p.Points, testPoints)
+                .Add(p => p.ContourLevels, contourLevels));
+            var mappingY = cut.Instance.MappingY;
+
+            // Act
+            var contourLines = cut.FindAll(".contour-line");
+
+            // Assert
+            Assert.Equal(contourLevels.Count, contourLines.Count);
+            AssertLinesMatch(new List<Edge> { new Edge(new ValuePoint(0.0, 0.5, 0.5), new ValuePoint(0.5, 0.5, 0.5)) }, contourLines, mappingY);
+        }
+
+        [Fact]
+        public void ShouldDisplayMultipleContours()
+        {
+            // Arrange
+            var testPoints = new List<ValuePoint> { new ValuePoint(0.0, 0.0, 0), new ValuePoint(0.0, 1.0, 1), new ValuePoint(1.0, 1.0, 1) };
+            var contourLevels = new List<ContourLevel> { new ContourLevel { Value = 0.5, Colour = "#ff0000" }, new ContourLevel { Value = 0.75, Colour = "#00ff00" } };
+
+            var cut = RenderComponent<ContourView>(parameters => parameters
+                .Add(p => p.Points, testPoints)
+                .Add(p => p.ContourLevels, contourLevels));
+            var mappingY = cut.Instance.MappingY;
+
+            // Act
+            var contourLevelGroups = cut.FindAll(".contour-level-group").ToList();
+
+            // Assert
+            Assert.Equal(contourLevels.Count, contourLevelGroups.Count);
+            
+            for (int i = 0; i < contourLevels.Count; i++)
+            {
+                Assert.Equal(contourLevels[i].Colour, contourLevelGroups[i].QuerySelector(".contour-line").GetAttribute("stroke"));
+            }
+        }
+
         private static List<ValuePoint> CreatePointSet(double typicalValue)
         {
             return new List<ValuePoint>
@@ -174,6 +218,20 @@ namespace Contour.Client.Test
                     Assert.Equal(triangles[i].Vertices[upperIndex].x, double.Parse(lines[i * 3 + j].GetAttribute("x2")));
                     Assert.Equal(triangles[i].Vertices[upperIndex].y, mappingY(double.Parse(lines[i * 3 + j].GetAttribute("y2"))));
                 }
+            }
+        }
+
+        private static void AssertLinesMatch(IEnumerable<Edge> expected, IRefreshableElementCollection<IElement> actual, Func<double, double> mappingY)
+        {
+            for (int i = 0; i < expected.Count(); i++)
+            {
+                var expectedLine = expected.ElementAt(i);
+                var actualLine = actual.ElementAt(i);
+
+                Assert.Equal(expectedLine.Start.x, double.Parse(actualLine.GetAttribute("x1")));
+                Assert.Equal(expectedLine.Start.y, mappingY(double.Parse(actualLine.GetAttribute("y1"))));
+                Assert.Equal(expectedLine.End.x, double.Parse(actualLine.GetAttribute("x2")));
+                Assert.Equal(expectedLine.End.y, mappingY(double.Parse(actualLine.GetAttribute("y2"))));
             }
         }
 

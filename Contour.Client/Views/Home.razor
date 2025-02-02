@@ -8,9 +8,16 @@
 
 <MudGrid Style="align-items: flex-start;">
     <MudItem xs="12" md="6">
-        <ContourView Points="@points" @ref="contourView"></ContourView>
+        <ContourView Points="@points" ContourLevels="@contourLevels" @ref="contourView"></ContourView>
     </MudItem>
     <MudItem xs="12" md="6">
-        <PointsEditor Points="@points" UpdateRequest="() => UpdatePlot()"></PointsEditor>
+        <MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+            <MudTabPanel Text="Points">
+                <PointsEditor Points="@points" UpdateRequest="() => UpdatePlot()"></PointsEditor>
+            </MudTabPanel>
+            <MudTabPanel Text="Contours">
+                <ContourLevelEditor ContourLevels="@contourLevels"></ContourLevelEditor>
+            </MudTabPanel>
+        </MudTabs>
     </MudItem>
 </MudGrid>

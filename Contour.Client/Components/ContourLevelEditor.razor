@@ -1,0 +1,57 @@
+﻿
+<MudStack>
+    <MudButton Variant="Variant.Filled"
+                Color="Color.Primary"
+                OnClick="AddLevel"
+                StartIcon="@Icons.Material.Filled.Add"
+                Class="add-contour-button">
+        Add New Level
+    </MudButton>
+
+    @if (ContourLevels.Any())
+    {
+        <MudTable Items="@ContourLevels.OrderBy(l => l.Value)" Dense="true" Hover="true">
+            <HeaderContent>
+                <MudTh>Level</MudTh>
+                <MudTh>Color</MudTh>
+                <MudTh>Preview</MudTh>
+                <MudTh>Actions</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd>
+                    <MudNumericField @bind-Value="@context.Value"
+                                        Class="contour-value"
+                                        Variant="Variant.Outlined"
+                                        Min="-999999"
+                                        Max="999999"
+                                        OnlyNumbers="true"
+                                        OnChange="@(() => UpdateLevel(context))" />
+                </MudTd>
+                <MudTd>
+                    <MudColorPicker @bind-Text="@context.Colour"
+                                    Class="contour-colour"
+                                    DisableAlpha="true"
+                                    Variant="Variant.Outlined"
+                                    OnChange="@(() => UpdateColor(context))" />
+                </MudTd>
+                <MudTd>
+                    <MudPaper Style="@($"background-color: {context.Colour}; width: 50px; height: 30px;")"
+                                Elevation="0" />
+                </MudTd>
+                <MudTd>
+                    <MudIconButton Icon="@Icons.Material.Filled.Delete"
+                                    Class="delete-contour-button"
+                                    Color="Color.Error"
+                                    Size="Size.Small"
+                                    OnClick="@(() => RemoveLevel(context))" />
+                </MudTd>
+            </RowTemplate>
+        </MudTable>
+    }
+    else
+    {
+        <MudAlert Severity="Severity.Info">
+            No contour levels defined. Click 'Add New Level' to begin.
+        </MudAlert>
+    }
+</MudStack>

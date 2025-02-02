@@ -12,9 +12,17 @@ namespace Contour.Client.Views
 
         List<ValuePoint> points = new List<ValuePoint>();
 
+        List<ContourLevel> contourLevels = new List<ContourLevel>();
+
         ContourView contourView;
 
         protected override async Task OnInitializedAsync()
+        {
+            await InitializePoints();
+            await InitializeContours();
+        }
+
+        private async Task InitializePoints()
         {
             points = await localStorageService.GetItemAsync<List<ValuePoint>>("contourPoints");
 
@@ -36,9 +44,27 @@ namespace Contour.Client.Views
             }
         }
 
+        private async Task InitializeContours()
+        {
+            contourLevels = await localStorageService.GetItemAsync<List<ContourLevel>>("contourLevels");
+
+            if (contourLevels == null || contourLevels.Count == 0)
+            {
+                contourLevels = new List<ContourLevel>();
+
+                var colours = new string[] { "#9400d3", "#4b0082", "#0000ff", "#00ff00", "#ffff00", "#ff7f00", "#ff0000" };
+
+                for (int i = 1; i < 8; i++)
+                {
+                    contourLevels.Add(new ContourLevel() { Value = i * 10, Colour = colours[i - 1] });
+                }
+            }
+        }
+
         protected void UpdatePlot()
         {
             localStorageService?.SetItemAsync("contourPoints", points);
+            localStorageService?.SetItemAsync("contourLevels", contourLevels);
             contourView?.UpdatePlot();
         }
     }

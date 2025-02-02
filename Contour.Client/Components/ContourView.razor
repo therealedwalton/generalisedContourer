@@ -14,9 +14,14 @@
         <line class="tri-line" x1="@triangle.Vertices[1].x" y1="@MappingY(triangle.Vertices[1].y)" x2="@triangle.Vertices[2].x" y2="@MappingY(triangle.Vertices[2].y)" stroke-width="@typicalElementSize"></line>
         <line class="tri-line" x1="@triangle.Vertices[2].x" y1="@MappingY(triangle.Vertices[2].y)" x2="@triangle.Vertices[0].x" y2="@MappingY(triangle.Vertices[0].y)" stroke-width="@typicalElementSize"></line>
     }
-    @foreach (var line in ContourLines)
+    @foreach (var level in ContourLines)
     {
-        <line x1="@line.Start.x" y1="@MappingY(line.Start.y)" x2="@line.End.x" y2="@MappingY(line.End.y)" stroke-width="@typicalElementSize" stroke="blue"></line>
+        <g class="contour-level-group">
+            @foreach (var line in level.Edges)
+            {
+                <line class="contour-line" x1="@line.Start.x" y1="@MappingY(line.Start.y)" x2="@line.End.x" y2="@MappingY(line.End.y)" stroke-width="@typicalElementSize" stroke="@level.Level.Colour"></line>
+            }
+        </g>
     }
     @foreach(var point in Points)
     {
