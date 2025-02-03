@@ -17,6 +17,9 @@ namespace Contour.Client.Components
         [Parameter]
         public List<ContourLevel> ContourLevels { get; set; } = new List<ContourLevel>();
 
+        [Parameter]
+        public PlotSettings PlotSettings { get; set; } = new PlotSettings();
+
         public List<ContourLevelData> ContourLines { get; set; } = new List<ContourLevelData>();
 
         public Func<double, double> MappingY { get; private set; } = y => -y;

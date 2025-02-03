@@ -8,11 +8,15 @@
     stroke-linecap="round"
     stroke-linejoin="round"
     preserveAspectRatio="xMidYMid meet">
-    @foreach (var triangle in Triangles)
+    @if (PlotSettings.ShowTriangulation)
     {
-        <line class="tri-line" x1="@triangle.Vertices[0].x" y1="@MappingY(triangle.Vertices[0].y)" x2="@triangle.Vertices[1].x" y2="@MappingY(triangle.Vertices[1].y)" stroke-width="@typicalElementSize"></line>
-        <line class="tri-line" x1="@triangle.Vertices[1].x" y1="@MappingY(triangle.Vertices[1].y)" x2="@triangle.Vertices[2].x" y2="@MappingY(triangle.Vertices[2].y)" stroke-width="@typicalElementSize"></line>
-        <line class="tri-line" x1="@triangle.Vertices[2].x" y1="@MappingY(triangle.Vertices[2].y)" x2="@triangle.Vertices[0].x" y2="@MappingY(triangle.Vertices[0].y)" stroke-width="@typicalElementSize"></line>
+        @foreach (var triangle in Triangles)
+        {
+            <line class="tri-line" x1="@triangle.Vertices[0].x" y1="@MappingY(triangle.Vertices[0].y)" x2="@triangle.Vertices[1].x" y2="@MappingY(triangle.Vertices[1].y)" stroke-width="@typicalElementSize"></line>
+            <line class="tri-line" x1="@triangle.Vertices[1].x" y1="@MappingY(triangle.Vertices[1].y)" x2="@triangle.Vertices[2].x" y2="@MappingY(triangle.Vertices[2].y)" stroke-width="@typicalElementSize"></line>
+            <line class="tri-line" x1="@triangle.Vertices[2].x" y1="@MappingY(triangle.Vertices[2].y)" x2="@triangle.Vertices[0].x" y2="@MappingY(triangle.Vertices[0].y)" stroke-width="@typicalElementSize"></line>
+        }
+
     }
     @foreach (var level in ContourLines)
     {

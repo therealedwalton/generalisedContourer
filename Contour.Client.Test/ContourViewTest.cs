@@ -48,18 +48,26 @@ namespace Contour.Client.Test
             }
         }
 
-        [Fact]
-        public void ShouldDisplayTriangulationOfPoints()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void ShouldDisplayTriangulationOfPoints(bool showTrianglulation)
         {
             // Arrange
             var testPoints = new List<ValuePoint> { new ValuePoint(0.0, 0.0, 1), new ValuePoint(0.0, 1.0, 1), new ValuePoint(1.0, 1.0, 1), new ValuePoint(1.0, 0.0, 1) };
-            var triangles = new List<Triangle<Point>>
-            {
-                new Triangle<Point>(testPoints[0], testPoints[1], testPoints[3]),
-                new Triangle<Point>(testPoints[1], testPoints[2], testPoints[3])
-            };
+            List<Triangle<Point>> triangles = new List<Triangle<Point>>();
 
-            var cut = RenderComponent<ContourView>(parameters => parameters.Add(p => p.Points, testPoints));
+            if(showTrianglulation)
+            {
+                triangles.Add(new Triangle<Point>(testPoints[0], testPoints[1], testPoints[3]));
+                triangles.Add(new Triangle<Point>(testPoints[1], testPoints[2], testPoints[3]));
+            }
+            var plotSettings = new PlotSettings { ShowTriangulation = showTrianglulation };
+
+            var cut = RenderComponent<ContourView>(parameters => parameters
+                .Add(p => p.Points, testPoints)
+                .Add(p => p.PlotSettings, plotSettings));
+
             var mappingY = cut.Instance.MappingY;
 
             // Act
@@ -116,7 +124,9 @@ namespace Contour.Client.Test
             var smallPlotPoints = CreatePointSet(10);
             var largePlotPoints = CreatePointSet(1000);
 
-            var cut = RenderComponent<ContourView>(parameters => parameters.Add(p => p.Points, smallPlotPoints));
+            var cut = RenderComponent<ContourView>(parameters => parameters
+                .Add(p => p.Points, smallPlotPoints)
+                .Add(p => p.PlotSettings, new PlotSettings { ShowTriangulation = true }));
             var mappingY = cut.Instance.MappingY;
 
             // Act
