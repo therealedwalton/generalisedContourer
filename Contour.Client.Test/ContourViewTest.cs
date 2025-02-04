@@ -71,7 +71,7 @@ namespace Contour.Client.Test
             var mappingY = cut.Instance.MappingY;
 
             // Act
-            var lines = cut.FindAll("line");
+            var lines = cut.FindAll(".tri-line");
 
             // Assert
             Assert.Equal(triangles.Count * 3, lines.Count);
@@ -185,6 +185,53 @@ namespace Contour.Client.Test
             {
                 Assert.Equal(contourLevels[i].Colour, contourLevelGroups[i].QuerySelector(".contour-line").GetAttribute("stroke"));
             }
+        }
+
+        [Fact]
+        public void ShouldClearTrianglesAndLinesWhenCleared()
+        {
+            // Arrange
+            var testPoints = new List<ValuePoint> { new ValuePoint(0.0, 0.0, 0), new ValuePoint(0.0, 1.0, 1), new ValuePoint(1.0, 1.0, 1) };
+            var contourLevels = new List<ContourLevel> { new ContourLevel { Value = 0.5, Colour = "#ff0000" }, new ContourLevel { Value = 0.75, Colour = "#00ff00" } };
+
+            var cut = RenderComponent<ContourView>(parameters => parameters
+                .Add(p => p.Points, testPoints)
+                .Add(p => p.ContourLevels, contourLevels)
+                .Add(p => p.PlotSettings, new PlotSettings() { ShowTriangulation = true }));
+            var mappingY = cut.Instance.MappingY;
+
+            // Act
+            var initialContourLines = cut.FindAll(".contour-line"); 
+            var initialTriangleLines = cut.FindAll(".tri-line");
+
+            testPoints.Clear();
+            cut.SetParametersAndRender(parameters => parameters.Add(p => p.Points, testPoints));
+
+            // Assert
+            Assert.True(initialContourLines.Count > 0);
+            Assert.True(initialTriangleLines.Count > 0);
+
+            Assert.Empty(cut.FindAll(".contour-line"));
+            Assert.Empty(cut.FindAll(".tri-line"));
+        }
+
+        [Fact]
+        public void ShouldNotTrianglateOrContourWihtoutEnoughPoints()
+        {
+            // Arrange
+            var testPoints = new List<ValuePoint> { new ValuePoint(0.0, 0.0, 0), new ValuePoint(0.0, 1.0, 1) };
+            var contourLevels = new List<ContourLevel> { new ContourLevel { Value = 0.5, Colour = "#ff0000" }, new ContourLevel { Value = 0.75, Colour = "#00ff00" } };
+
+            // Act
+            var cut = RenderComponent<ContourView>(parameters => parameters
+                .Add(p => p.Points, testPoints)
+                .Add(p => p.ContourLevels, contourLevels)
+                .Add(p => p.PlotSettings, new PlotSettings() { ShowTriangulation = true }));
+            var mappingY = cut.Instance.MappingY;
+
+            // Assert
+            Assert.Empty(cut.FindAll(".contour-line"));
+            Assert.Empty(cut.FindAll(".tri-line"));
         }
 
         private static List<ValuePoint> CreatePointSet(double typicalValue)

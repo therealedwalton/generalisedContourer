@@ -44,5 +44,10 @@ namespace Contour.Client.Components
         {
             await UpdateRequest.InvokeAsync();
         }
+
+        private async Task Clear()
+        {
+            Points.Clear();
+        }
     }
 }

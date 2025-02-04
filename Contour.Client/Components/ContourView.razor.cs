@@ -40,7 +40,10 @@ namespace Contour.Client.Components
 
         public async Task UpdatePlot()
         {
-            if (Points?.Count > 0)
+            Triangles = new List<Triangle<Point>>();
+            ContourLines = new List<ContourLevelData>();
+
+            if (Points?.Count > 2)
             {
                 var triangulation = new DelaunayTriangulation(Points.ConvertAll(x => x as Point));
 

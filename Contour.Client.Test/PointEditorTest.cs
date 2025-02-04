@@ -127,6 +127,22 @@ namespace Contour.Client.Test
             Assert.True(updateCalled);
         }
 
+        [Fact]
+        public void UserCanClearPoints()
+        {
+            // Arrange
+            var initialPoints = 2;
+            var points = CreatePoints(initialPoints);
+            var cut = RenderComponent<PointsEditor>(parameters => parameters.Add(x => x.Points, points));
+
+            // Act
+            var addButton = cut.Find(".clear-button");
+            addButton.Click();
+
+            // Assert
+            Assert.Equal(0, points.Count);
+        }
+
         private List<ValuePoint> CreatePoints(int numberOfPoints)
         {
             var points = new List<ValuePoint>();
