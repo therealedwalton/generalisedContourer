@@ -32,16 +32,34 @@ namespace Contour.Client.Views
                 var minValue = 0;
                 var maxValue = 100;
 
+                var gaussian = new GaussianDistribution2D(new Point(GenerateRangedRandom(random, minValue, maxValue), GenerateRangedRandom(random, minValue, maxValue)), 100, 20, 20);
+
+                List<Func<double, double, double>> funcs = new List<Func<double, double, double>>()
+                {
+                    (x, y) => gaussian.Value(x, y),
+                };
+
                 points = new List<ValuePoint>();
 
                 for (int i = 0; i < 20; i++)
                 {
-                    double x = minValue + (random.NextDouble() * (maxValue - minValue));
-                    double y = minValue + (random.NextDouble() * (maxValue - minValue));
-                    double z = minValue + (random.NextDouble() * (maxValue - minValue));
+                    double x = GenerateRangedRandom(random, minValue, maxValue);
+                    double y = GenerateRangedRandom(random, minValue, maxValue);
+                    double z = 0;
+
+                    foreach (var func in funcs)
+                    {
+                        z += func(x, y);
+                    }
+
                     points.Add(new ValuePoint(x, y, z));
                 }
             }
+        }
+
+        private double GenerateRangedRandom(Random random, double minValue, double maxValue)
+        {
+            return minValue + (random.NextDouble() * (maxValue - minValue));
         }
 
         private async Task InitializeContours()
