@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Contour.Core.Primitives.Behaviours;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,31 @@ namespace Contour.Core.Test
 
             //Assert
             Assert.Equal(expectedSame, equal);
+        }
+
+        [Fact]
+        public void CanAddColourBehaviour()
+        {
+           //Arrange
+            Point point = new Point(0.0, 0.0);
+            string colour = "#ff0000";
+
+            //Act
+            point.AddBehaviour(new ColourBehaviour { Colour = colour });
+
+            //Assert
+            Assert.Equal(colour, point.Behaviour<ColourBehaviour>().Colour);
+        }
+
+        [Fact]
+        public void DoesntRequireBehaviour()
+        {
+            //Arrange
+            Point point = new Point(0.0, 0.0);
+
+            //Assert
+            Assert.False(point.HasBehaviour<ColourBehaviour>());
+            Assert.Null(point.Behaviour<ColourBehaviour>()?.Colour);
         }
 
         public static IEnumerable<object[]> EquivalentPoints =>
